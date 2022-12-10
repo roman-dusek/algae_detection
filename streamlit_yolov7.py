@@ -46,17 +46,18 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
 
     def main(self):
         st.title('Algae Object Detector')
-        st.subheader("""Object detector is currently able to detect from 24 different classes of algaes.\n""")
-        st.write("Namely:\n")
+        with st.sidebar:
+            st.subheader("""Object detector is currently able to detect from 24 different classes of algaes.\n""")
+            st.write("Namely:\n")
 
-        text_i_list=[]
-        for i,name_i in enumerate(self.names):
-            #text_i_list.append(f'id={i} \t \t name={name_i}\n')
-            text_i_list.append(f'{i}: {name_i}\n')
-        st.write(pd.DataFrame(text_i_list))
-        #st.selectbox('Classes',tuple(text_i_list))
-        self.conf_selection=st.selectbox('Confidence Threshold',tuple([0.1,0.25,0.5,0.75,0.95]))
-        
+            text_i_list=[]
+            for i,name_i in enumerate(self.names):
+                #text_i_list.append(f'id={i} \t \t name={name_i}\n')
+                text_i_list.append(f'{i}: {name_i}\n')
+            st.write(pd.DataFrame(text_i_list))
+            #st.selectbox('Classes',tuple(text_i_list))
+            self.conf_selection=st.selectbox('Confidence Threshold',tuple([0.1,0.25,0.5,0.75,0.95]))
+            
         self.response=requests.get(self.path_img_i)
 
         self.img_screen=Image.open(BytesIO(self.response.content))
