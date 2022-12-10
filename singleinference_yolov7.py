@@ -2,7 +2,6 @@
 import random
 import numpy as np
 import os
-import sys
 import torch
 import cv2
 import logging
@@ -250,8 +249,7 @@ if __name__=='__main__':
     #INPUTS
     img_size=640
     path_yolov7_weights="weights/best.pt"
-    path_img_i=r"test_images/DJI_0028_fps24_frame00000040.jpg"
-    path_img_i=r"/media/steven/Elements/Drone_Videos_Park/FPS_DESIRED_1d5/JPEGImages/DJI_0028_fps24_frame00000040.jpg"
+    path_img_i=r"test_images/dinobryon_3.jpg"
 
     #INITIALIZE THE app
     app=SingleInference_YOLOV7(img_size,path_yolov7_weights,path_img_i,device_i='cpu',conf_thres=0.25,iou_thres=0.5)
