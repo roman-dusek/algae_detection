@@ -2,6 +2,7 @@
 from singleinference_yolov7 import SingleInference_YOLOV7
 import streamlit as st
 import logging
+import pandas as pd
 import requests
 from PIL import Image
 from io import BytesIO
