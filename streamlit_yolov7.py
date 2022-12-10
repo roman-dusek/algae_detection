@@ -1,13 +1,13 @@
-import singleinference_yolov7
+
 from singleinference_yolov7 import SingleInference_YOLOV7
-import os
 import streamlit as st
 import logging
 import requests
 from PIL import Image
 from io import BytesIO
 import numpy as np
-import cv2
+
+
 class Streamlit_YOLOV7(SingleInference_YOLOV7):
     '''
     streamlit app that uses yolov7
@@ -42,6 +42,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         
         '''
         super().__init__(img_size,path_yolov7_weights,path_img_i,device_i=device_i)
+
     def main(self):
         st.title('Custom YoloV7 Object Detector')
         st.subheader(""" Upload an image and run YoloV7 on it.  
@@ -87,19 +88,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         """,
             unsafe_allow_html=True,
         )
-        st.markdown(
-            """
-            <style>
-            .reportview-container {
-                background: url("https://raw.githubusercontent.com/stevensmiley1989/STREAMLIT_YOLOV7/main/misc/IMG_0512_reduce.JPG")
-            }
-        .sidebar .sidebar-content {
-                background: url("https://raw.githubusercontent.com/stevensmiley1989/STREAMLIT_YOLOV7/main/misc/IMG_0512_reduce.JPG")
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
+
         text_i_list=[]
         for i,name_i in enumerate(self.names):
             #text_i_list.append(f'id={i} \t \t name={name_i}\n')
