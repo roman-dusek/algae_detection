@@ -56,7 +56,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
                 text_i_list.append(f'{i}: {name_i}\n')
             st.write(pd.DataFrame(text_i_list))
             #st.selectbox('Classes',tuple(text_i_list))
-            self.conf_selection=st.selectbox('Confidence Threshold',tuple([0.1,0.25,0.5,0.75,0.95]))
+            self.conf_selection=st.selectbox('Confidence Threshold',tuple([0.1,0.25,0.5,0.75,0.95]), index=2)
             
         self.response=requests.get(self.path_img_i)
 

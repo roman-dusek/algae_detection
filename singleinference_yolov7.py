@@ -89,6 +89,8 @@ class SingleInference_YOLOV7:
         self.names = self.model.module.names if hasattr(self.model, 'module') else self.model.names
         self.colors = [[random.randint(0, 255) for _ in range(3)] for _ in self.names]
 
+        self.model.eval()
+
         # Run inference
         if self.device.type != 'cpu':
             self.model(torch.zeros(1, 3, self.img_size, self.img_size).to(self.device).type_as(next(self.model.parameters())))  # run once
@@ -152,7 +154,8 @@ class SingleInference_YOLOV7:
         '''
         # Inference
         if type(self.im)!=type(None):
-            self.outputs = self.model(self.im, augment=False)[0]
+            with torch.no_grad():
+                self.outputs = self.model(self.im, augment=False)[0]
             # Apply NMS
             self.outputs = self.non_max_suppression(self.outputs, self.conf_thres, self.iou_thres, classes=None, agnostic=False)
             img_i=self.im0.copy()
