@@ -45,15 +45,15 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
 
     def main(self):
         st.title('Algae Object Detector')
-        st.subheader(""" Object detector is currently able to detect from 24 different classes of algaes. 
-        Namely:\n""")
+        st.subheader("""Object detector is currently able to detect from 24 different classes of algaes.\nNamely:\n""")
 
         text_i_list=[]
         for i,name_i in enumerate(self.names):
             #text_i_list.append(f'id={i} \t \t name={name_i}\n')
             text_i_list.append(f'{i}: {name_i}\n')
-        print(text_i_list)
-        st.selectbox('Classes',tuple(text_i_list))
+        st.write(text_i_list)
+        st.magic(text_i_list)
+        #st.selectbox('Classes',tuple(text_i_list))
         self.conf_selection=st.selectbox('Confidence Threshold',tuple([0.1,0.25,0.5,0.75,0.95]))
         
         self.response=requests.get(self.path_img_i)
@@ -61,7 +61,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
         self.img_screen=Image.open(BytesIO(self.response.content))
 
         st.image(self.img_screen, caption=self.capt, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
-        st.markdown('YoloV7 on streamlit.  Demo of object detection with YoloV7 with a web application.')
+
         self.im0=np.array(self.img_screen.convert('RGB'))
         self.load_image_st()
         predictions = st.button('Predict on the image?')
@@ -78,7 +78,7 @@ class Streamlit_YOLOV7(SingleInference_YOLOV7):
             self.im0=np.array(self.im0)
 
             return self.im0
-        elif type(self.im0) !=type(None):
+        elif type(self.im0) !=type (None):
             return self.im0
         else:
             return None
