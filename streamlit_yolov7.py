@@ -109,7 +109,7 @@ if __name__=='__main__':
     #INPUTS for YOLOV7
     img_size=640
     path_yolov7_weights="weights/best.pt"
-    path_img_i="https://raw.githubusercontent.com/roman-dusek/algae_detection/main/test_images/dinobryon_3.jpg"
+    path_img_i="https://raw.githubusercontent.com/roman-dusek/algae_detection/main/test_images/tabellaria_3.jpg"
     #INPUTS for webapp
     app.capt="Initial Image"
     app.new_yolo_model(img_size,path_yolov7_weights,path_img_i)
